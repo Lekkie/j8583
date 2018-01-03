@@ -135,7 +135,11 @@ public abstract class FieldParseInfo {
             fpi = new LlllvarParseInfo();
         } else if (t == IsoType.LLLLBIN) {
             fpi = new LlllbinParseInfo();
-        }
+        } else if (t == IsoType.LLLLLVAR) {
+			fpi = new LllllvarParseInfo();
+		} else if (t == IsoType.LLLLLLVAR) {
+			fpi = new LlllllvarParseInfo();
+		}
 		if (fpi == null) {
 	 		throw new IllegalArgumentException(String.format("Cannot parse type %s", t));
 		}
@@ -156,6 +160,15 @@ public abstract class FieldParseInfo {
                 case 4:
                     return ((buf[pos] - 48) * 1000) + ((buf[pos + 1] - 48) * 100)
                             + ((buf[pos + 2] - 48) * 10) + (buf[pos + 3] - 48);
+				case 5:
+					return ((buf[pos] - 48) * 10000) + ((buf[pos + 1] - 48) * 1000)
+							+ ((buf[pos + 2] - 48) * 100) + ((buf[pos + 3] - 48) * 10)
+							+ (buf[pos + 4] - 48) ;
+				case 6:
+					return ((buf[pos] - 48) * 100000) + ((buf[pos + 1] - 48) * 10000)
+							+ ((buf[pos + 2] - 48) * 1000) + ((buf[pos + 3] - 48) * 100)
+							+ ((buf[pos + 4] - 48) * 10) + (buf[pos + 5] - 48) ;
+
             }
         }
         return -1;

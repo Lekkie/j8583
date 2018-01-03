@@ -482,7 +482,10 @@ public class MessageFactory<T extends IsoMessage> {
                                     || val.getType() == IsoType.LLLLVAR
 									|| val.getType() == IsoType.LLLLBIN) {
                                 pos += 2;
-                            }
+                            } else if (val.getType() == IsoType.LLLLLVAR
+									|| val.getType() == IsoType.LLLLLLVAR) {
+								pos += 3;
+							}
 						}
 					}
 				}
@@ -509,7 +512,11 @@ public class MessageFactory<T extends IsoMessage> {
 							pos += 3;
 						} else if (val.getType() == IsoType.LLLLVAR || val.getType() == IsoType.LLLLBIN) {
                             pos += 4;
-                        }
+                        } else if (val.getType() == IsoType.LLLLLVAR) {
+							pos += 5;
+						} else if (val.getType() == IsoType.LLLLLLVAR) {
+							pos += 6;
+						}
 					}
 				}
 			}

@@ -489,6 +489,10 @@ public class IsoMessage {
                     sb.append(String.format("%03d", desc.length()));
                 } else if (v.getType() == IsoType.LLLLBIN || v.getType() == IsoType.LLLLVAR) {
                     sb.append(String.format("%04d", desc.length()));
+                } else if (v.getType() == IsoType.LLLLLVAR) {
+                    sb.append(String.format("%05d", desc.length()));
+                } else if (v.getType() == IsoType.LLLLLLVAR) {
+                    sb.append(String.format("%06d", desc.length()));
                 }
                 sb.append(desc);
             }

@@ -97,6 +97,8 @@ public class CompositeField implements CustomBinaryField<CompositeField> {
                     } else if (v.getType() == IsoType.LLLVAR || v.getType() == IsoType.LLLBIN
                             || v.getType() == IsoType.LLLLVAR || v.getType() == IsoType.LLLLBIN) {
                         pos+=2;
+                    } else if (v.getType() == IsoType.LLLLLVAR || v.getType() == IsoType.LLLLLLVAR) {
+                        pos+=3;
                     }
                     vals.add(v);
                 }
@@ -130,6 +132,10 @@ public class CompositeField implements CustomBinaryField<CompositeField> {
                         pos+=3;
                     } else if (v.getType() == IsoType.LLLLBIN || v.getType() == IsoType.LLLLVAR) {
                         pos+=4;
+                    } else if (v.getType() == IsoType.LLLLLVAR) {
+                        pos+=5;
+                    } else if (v.getType() == IsoType.LLLLLLVAR) {
+                        pos+=6;
                     }
                     vals.add(v);
                 }

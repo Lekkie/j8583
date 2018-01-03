@@ -64,7 +64,11 @@ public enum IsoType {
     /** variable length byte array with 4-digit header length. */
     LLLLBIN(false, 0),
     /** Date in format yyMMddHHmmss. */
-   	DATE12(false,12);
+   	DATE12(false,12),
+	/** A variable length alphanumeric value with a 5-digit header length. */
+	LLLLLVAR(false, 0), // Added by Lekan Omotayo
+	/** A variable length alphanumeric value with a 6-digit header length. */
+	LLLLLLVAR(false, 0); // Added by Lekan Omotayo
 
 	private boolean needsLen;
 	private int length;
@@ -122,7 +126,7 @@ public enum IsoType {
 	        } else {
 	        	return String.format(String.format("%%-%ds", length), value);
 	        }
-		} else if (this == LLVAR || this == LLLVAR || this == LLLLVAR) {
+		} else if (this == LLVAR || this == LLLVAR || this == LLLLVAR || this == LLLLLVAR || this == LLLLLLVAR) {
 			return value;
 		} else if (this == NUMERIC) {
 	        char[] c = new char[length];
@@ -174,7 +178,7 @@ public enum IsoType {
 	        	throw new IllegalArgumentException("Numeric value is larger than intended length: " + value + " LEN " + length);
 	        }
 	        return x;
-		} else if (this == ALPHA || this == LLVAR || this == LLLVAR || this == LLLLVAR) {
+		} else if (this == ALPHA || this == LLVAR || this == LLLVAR || this == LLLLVAR || this == LLLLLVAR || this == LLLLLLVAR) {
 			return format(Long.toString(value), length);
 		} else if (this == AMOUNT) {
 			return String.format("%010d00", value);
@@ -190,7 +194,7 @@ public enum IsoType {
 			return String.format("%012d", value.movePointRight(2).longValue());
 		} else if (this == NUMERIC) {
 			return format(value.longValue(), length);
-		} else if (this == ALPHA || this == LLVAR || this == LLLVAR || this == LLLLVAR) {
+		} else if (this == ALPHA || this == LLVAR || this == LLLVAR || this == LLLLVAR || this == LLLLLVAR || this == LLLLLLVAR) {
 			return format(value.toString(), length);
 		} else if (this == BINARY || this == LLBIN || this == LLLBIN || this == LLLLBIN) {
 			//TODO
